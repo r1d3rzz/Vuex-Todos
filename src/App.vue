@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h1>{{ $store.state.Todos.name }}</h1>
+    <TodosView />
   </div>
 </template>
 
 <script>
+import TodosView from "./components/TodosView";
 export default {
+  components: { TodosView },
   name: "App",
 };
 </script>
