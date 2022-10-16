@@ -8,9 +8,7 @@
           v-for="(todo, index) in myTodos"
           :key="index"
         >
-          <div class="card-body text-start">
-            {{ todo.title }}
-          </div>
+          <SingleTodo :todo="todo" />
         </div>
       </div>
     </div>
@@ -18,8 +16,10 @@
 </template>
 
 <script>
+import SingleTodo from "./SingleTodo";
 import { mapGetters, mapActions } from "vuex";
 export default {
+  components: { SingleTodo },
   computed: {
     ...mapGetters(["myTodos"]),
   },

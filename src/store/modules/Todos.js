@@ -8,6 +8,13 @@ export default {
     addTodo(state, value) {
       state.todos = value;
     },
+    doneUpdateTodo(state, todo) {
+      state.todos.forEach((t) => {
+        if (t.id == todo.id) {
+          t = todo;
+        }
+      });
+    },
   },
   actions: {
     async fetchTodos(context) {
@@ -15,6 +22,11 @@ export default {
       if (res.status === 404) return;
       let todos = res.data;
       context.commit("addTodo", todos);
+    },
+
+    async doneBtn(context, todo) {
+      let res = await axios.put(`http://localhost:3000/todos/${todo.id}`, todo);
+      context.commit("doneUpdateTodo", res.data);
     },
   },
   getters: {
