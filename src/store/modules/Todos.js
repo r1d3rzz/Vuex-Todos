@@ -28,6 +28,11 @@ export default {
       let res = await axios.put(`http://localhost:3000/todos/${todo.id}`, todo);
       context.commit("doneUpdateTodo", res.data);
     },
+
+    async addNewTodo(context, todo) {
+      let res = await axios.post("http://localhost:3000/todos", todo);
+      context.commit("addTodo", res.data);
+    },
   },
   getters: {
     myTodos(state) {

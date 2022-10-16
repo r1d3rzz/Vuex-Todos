@@ -7,7 +7,11 @@
       <div class="btn-group">
         <button class="btn btn-sm btn-secondary">edit</button>
         <button class="btn btn-sm btn-danger">delete</button>
-        <button class="btn btn-sm btn-primary" @click="doneButton(todo)">
+        <button
+          class="btn btn-sm btn-primary"
+          :class="{ fadeBtn: todo.complete }"
+          @click="doneButton(todo)"
+        >
           done
         </button>
       </div>
@@ -49,5 +53,9 @@ export default {
 
 .complete {
   border-left-color: blue;
+}
+
+.fadeBtn {
+  opacity: 0.5;
 }
 </style>
