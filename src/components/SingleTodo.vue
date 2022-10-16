@@ -5,7 +5,9 @@
         {{ todo.title }}
       </div>
       <div class="btn-group">
-        <button class="btn btn-sm btn-secondary">edit</button>
+        <router-link :to="{ name: 'editTodo', params: { id: todo.id } }">
+          <button class="btn btn-sm btn-secondary">edit</button>
+        </router-link>
         <button class="btn btn-sm btn-danger" @click="deleteTodo(todo.id)">
           delete
         </button>

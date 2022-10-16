@@ -43,6 +43,10 @@ export default {
       await axios.delete(`http://localhost:3000/todos/${id}`);
       context.commit("removeTodo", id);
     },
+    async updateTodoItem(context, todo) {
+      let res = await axios.put(`http://localhost:3000/todos/${todo.id}`, todo);
+      context.commit("addTodo", res.data);
+    },
   },
   getters: {
     myTodos(state) {
