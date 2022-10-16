@@ -15,6 +15,11 @@ export default {
         }
       });
     },
+    removeTodo(state, id) {
+      state.todos = state.todos.filter((t) => {
+        return t.id !== id;
+      });
+    },
   },
   actions: {
     async fetchTodos(context) {
@@ -32,6 +37,11 @@ export default {
     async addNewTodo(context, todo) {
       let res = await axios.post("http://localhost:3000/todos", todo);
       context.commit("addTodo", res.data);
+    },
+
+    async deleteTodoItem(context, id) {
+      await axios.delete(`http://localhost:3000/todos/${id}`);
+      context.commit("removeTodo", id);
     },
   },
   getters: {

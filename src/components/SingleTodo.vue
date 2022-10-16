@@ -6,7 +6,9 @@
       </div>
       <div class="btn-group">
         <button class="btn btn-sm btn-secondary">edit</button>
-        <button class="btn btn-sm btn-danger">delete</button>
+        <button class="btn btn-sm btn-danger" @click="deleteTodo(todo.id)">
+          delete
+        </button>
         <button
           class="btn btn-sm btn-primary"
           :class="{ fadeBtn: todo.complete }"
@@ -36,7 +38,10 @@ export default {
       todo.complete = !todo.complete;
       this.doneBtn(todo);
     },
-    ...mapActions(["doneBtn"]),
+    async deleteTodo(id) {
+      await this.deleteTodoItem(id);
+    },
+    ...mapActions(["doneBtn", "deleteTodoItem"]),
   },
 };
 </script>
