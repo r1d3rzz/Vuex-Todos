@@ -57,6 +57,7 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
 import { mapActions } from "vuex";
 export default {
   props: ["id"],
@@ -69,6 +70,17 @@ export default {
         complete: false,
       },
       isRunning: false,
+      Toast: Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      }),
     };
   },
   methods: {
@@ -80,7 +92,13 @@ export default {
       this.form.detail = res.data.detail;
     },
     async updateTodo() {
+      this.isRunning = true;
       await this.updateTodoItem(this.form);
+      this.isRunning = false;
+      this.Toast.fire({
+        icon: "success",
+        title: "Updated in successfully",
+      });
       return this.$router.push({ name: "home" });
     },
     ...mapActions(["updateTodoItem"]),

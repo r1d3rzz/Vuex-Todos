@@ -57,6 +57,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import Swal from "sweetalert2";
 export default {
   data() {
     return {
@@ -66,6 +67,17 @@ export default {
         complete: false,
       },
       isRunning: false,
+      Toast: Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        },
+      }),
     };
   },
 
@@ -76,6 +88,10 @@ export default {
       this.isRunning = false;
       this.title = "";
       this.detail = "";
+      this.Toast.fire({
+        icon: "success",
+        title: "Created in successfully",
+      });
       return this.$router.push({ name: "home" });
     },
     ...mapActions(["addNewTodo"]),
