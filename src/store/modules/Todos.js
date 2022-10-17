@@ -3,10 +3,13 @@ import axios from "axios";
 export default {
   state: {
     todos: [],
+    current: null,
   },
   mutations: {
     addTodo(state, value) {
-      state.todos = value;
+      if (state.todoComplete == null) {
+        state.todos = value;
+      }
     },
     doneUpdateTodo(state, todo) {
       state.todos.forEach((t) => {

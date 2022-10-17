@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <TodosView />
-  </div>
+  <TodosView />
 </template>
 
 <script>

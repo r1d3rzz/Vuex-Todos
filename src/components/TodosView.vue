@@ -20,7 +20,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   components: { SingleTodo },
   computed: {
-    ...mapGetters(["myTodos"]),
+    ...mapGetters(["myTodos", "currentTodos"]),
   },
   methods: {
     ...mapActions(["fetchTodos"]),

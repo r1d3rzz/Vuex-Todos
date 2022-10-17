@@ -1,15 +1,22 @@
 <template>
-  <div>
+  <div class="container">
     <nav>
       <router-link :to="{ name: 'home' }">Todos</router-link> |
       <router-link :to="{ name: 'addTodo' }">Add New Todo</router-link>
     </nav>
+
+    <div class="mt-3">
+      <NavBar />
+    </div>
+
     <router-view />
   </div>
 </template>
 
 <script>
+import NavBar from "./components/NavBar";
 export default {
+  components: { NavBar },
   name: "App",
 };
 </script>
