@@ -3,13 +3,11 @@ import axios from "axios";
 export default {
   state: {
     todos: [],
-    current: null,
+    current: "all",
   },
   mutations: {
     addTodo(state, value) {
-      if (state.todoComplete == null) {
-        state.todos = value;
-      }
+      state.todos = value;
     },
     doneUpdateTodo(state, todo) {
       state.todos.forEach((t) => {
@@ -22,6 +20,9 @@ export default {
       state.todos = state.todos.filter((t) => {
         return t.id !== id;
       });
+    },
+    upDateCurrent(state, current) {
+      state.current = current;
     },
   },
   actions: {
@@ -54,6 +55,9 @@ export default {
   getters: {
     myTodos(state) {
       return state.todos;
+    },
+    myCurrent(state) {
+      return state.current;
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-4">
     <div class="row">
       <div
         class="
@@ -35,10 +35,10 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
   data() {
     return {
-      complete: null,
       toggle: false,
       unComplete: false,
     };
@@ -46,17 +46,19 @@ export default {
   methods: {
     toggleBtn() {
       if (this.toggle == false) {
-        this.complete = "true";
         this.unComplete = false;
+        this.upDateCurrent("complete");
       } else {
         this.unComplete = true;
-        this.complete = "false";
+        this.upDateCurrent("onGoing");
       }
     },
     allTodos() {
       this.unComplete = false;
       this.toggle = false;
+      this.upDateCurrent("all");
     },
+    ...mapMutations(["upDateCurrent"]),
   },
 };
 </script>

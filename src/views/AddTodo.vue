@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-md-7 text-start mx-auto mt-5">
+      <div class="col-md-7 text-start mx-auto mt-3">
         <div class="card">
           <form @submit.prevent="addTodo">
             <div class="card-body">
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapMutations } from "vuex";
 import Swal from "sweetalert2";
 export default {
   data() {
@@ -85,6 +85,7 @@ export default {
     async addTodo() {
       this.isRunning = true;
       await this.addNewTodo(this.form);
+      this.upDateCurrent("all");
       this.isRunning = false;
       this.title = "";
       this.detail = "";
@@ -95,6 +96,7 @@ export default {
       return this.$router.push({ name: "home" });
     },
     ...mapActions(["addNewTodo"]),
+    ...mapMutations(["upDateCurrent"]),
   },
 };
 </script>
